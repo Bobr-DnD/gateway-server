@@ -6,7 +6,6 @@ import sessionRoutes from './routes/sessionRouter.js'
 import dotenv from 'dotenv'
 
 dotenv.config({ path: './config.env' })
-const PORT = process.env.GATEWAY_PORT
 
 const fastify = Fastify({
   logger: {
@@ -16,8 +15,8 @@ const fastify = Fastify({
       options: {
         colorize: true,
         translateTime: 'SYS:yyyy-mm-dd HH:MM:ss Z',
-        ignore: 'pid,hostname,reqId',
-        messageFormat: '{req.method} {req.url} → {res.statusCode}'
+        ignore: 'pid,hostname,reqId,req,res,err,responseTime',
+        messageFormat: '{req.method} {req.url} → {res.statusCode}; {err.type} -> {err.message}'
       }
     }
   }
@@ -37,8 +36,8 @@ fastify.register(sessionRoutes, { prefix: '/session' })
 // Start server
 const start = async () => {
   try {
-    await fastify.listen({ port: PORT })
-    console.log(`Server running on http://localhost:${PORT}`)
+    await fastify.listen({ port: process.env.GATEWAY_PORT })
+    console.log(`Server running on http://localhost:${process.env.GATEWAY_PORT}`)
   } catch (err) {
     fastify.log.error(err)
     process.exit(1)
