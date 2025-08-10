@@ -23,7 +23,7 @@ const fastify = Fastify({
 
 //CORS
 await fastify.register(cors, {
-  origin: ['http://localhost', 'http://127.0.0.1', 'http://192.168.0.155'],
+  origin: ['http://localhost:8080', 'http://127.0.0.1:8080'],
   credentials: true
 })
 //Logger
