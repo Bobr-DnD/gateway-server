@@ -23,7 +23,7 @@ const fastify = Fastify({
 
 //CORS
 await fastify.register(cors, {
-  origin: ['http://localhost:8080', 'http://127.0.0.1:8080'],
+  origin: ['http://localhost:8080', 'http://127.0.0.1:8080', 'http://fallout-dnd.tplinkdns.com:8080'],
   credentials: true
 })
 //Logger
@@ -35,7 +35,7 @@ fastify.register(proxy)
 // Start server
 const start = async () => {
   try {
-    await fastify.listen({ port: process.env.GATEWAY_PORT })
+    await fastify.listen({ port: process.env.GATEWAY_PORT, host: '0.0.0.0' })
   } catch (err) {
     fastify.log.error(err)
     process.exit(1)
