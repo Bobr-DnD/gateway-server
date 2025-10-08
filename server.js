@@ -23,7 +23,9 @@ const fastify = Fastify({
 
 //CORS
 await fastify.register(cors, {
-  origin: ['http://localhost:8080', 'http://127.0.0.1:8080', 'http://fallout-dnd.tplinkdns.com:8080'],
+  origin: ['http://localhost:8080', 'http://127.0.0.1:8080', 'http://fallout-dnd.tplinkdns.com:8080', 'http://10.1.6.39:8080'],
+  methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 })
 //Logger
