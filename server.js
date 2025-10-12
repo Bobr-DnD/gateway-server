@@ -4,7 +4,7 @@ import dotenv from 'dotenv'
 import customLogger from './plugins/logger.js'
 import proxy from './utils/proxy.js'
 
-dotenv.config({ path: './config.env' })
+dotenv.config({ path: './.env' })
 
 const fastify = Fastify({
   logger: {
