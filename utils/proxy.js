@@ -3,7 +3,7 @@ import fastifyReplyFrom from '@fastify/reply-from'
 
 export default async function (fastify, opts) {
   fastify.register(fastifyHttpProxy, {
-    upstream: `http://localhost:${process.env.API_PORT}`,
+    upstream: process.env.API_SERVER_URL,
     prefix: '/api',
     rewritePrefix: '/',
     http2: false,
@@ -11,7 +11,7 @@ export default async function (fastify, opts) {
   })
 
   fastify.register(fastifyHttpProxy, {
-    upstream: `http://localhost:${process.env.WS_PORT}`,
+    upstream: process.env.WS_SERVER_URL,
     prefix: "/socket.io",
     websocket: true, 
     rewritePrefix: "/socket.io",
