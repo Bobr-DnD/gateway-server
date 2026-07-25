@@ -2,6 +2,7 @@ import Fastify from 'fastify'
 import cors from '@fastify/cors'
 import dotenv from 'dotenv'
 import customLogger from './plugins/logger.js'
+import rateLimit from './plugins/rateLimit.js'
 import proxy from './utils/proxy.js'
 
 dotenv.config({ path: './.env' })
@@ -34,6 +35,9 @@ await fastify.register(cors, {
 })
 //Logger
 await fastify.register(customLogger)
+
+//Rate limit
+await fastify.register(rateLimit)
 
 // Register routers
 fastify.register(proxy)
